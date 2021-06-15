@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>后台管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="__ADMIN__css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="__ADMIN__css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="__ADMIN__css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+    <script src="__ADMIN__js/jquery-1.8.1.min.js"></script>
+    <script src="__ADMIN__js/bootstrap.min.js"></script>
+</head>
+<body>
+   <!-- 上页面 -->
+{include file="public/top" /}
+<!-- 左页面 -->
+{include file="public/left" /}
+    <!-- 右 -->
+    <div class="content">
+        <div class="header">
+            <h1 class="page-title">商品列表</h1>
+        </div>
+
+        <div class="well">
+            <!-- search button -->
+            <form action="" method="get" class="form-search">
+                <div class="row-fluid" style="text-align: left;">
+                    <div class="pull-left span4 unstyled">
+                        <p> 商品名称：<input class="input-medium" name="goods_name" type="text"></p>
+                    </div>
+                </div>
+                <button type="submit" class="btn">查找</button>
+                <a class="btn btn-primary" href="{:url('admin/goods/add')}">新增</a>
+            </form>
+        </div>
+        <div class="well">
+            <!-- table -->
+            <table class="table table-bordered table-hover table-condensed" >
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>商品名称</th>
+                        <th>商品价格</th>
+                        <th>商品数量</th>
+                        <th>商品logo</th>
+                        <th>添加时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {foreach $goods as $good}
+                    <tr class="error">
+                        <td>{$good.id}</td>
+                        <td><a href="javascript:void(0);">{$good.goods_name}</a></td>
+                        <td>{$good.goods_price}</td>
+                        <td>{$good.goods_number}</td>
+                        <td><img src="/{$good.goods_logo}"></td>
+                        <td>{$good.create_time|date="Y-m-d H:i:s"}</td>
+                        <td>
+                            <a href="{:url('edit')}?id={$good.id}"> 编辑 </a>
+                            <a href="javascript:void(0);" onclick="if(confirm('确认删除？')) location.href='/admin/goods/softdelete/id/{$good.id}'"> 删除 </a>
+                            <a href="{:url('detail')}?id={$good.id}">详情</a>
+                        </td>
+                    </tr>
+                    {/foreach}
+                   
+                </tbody>
+            </table>
+            <!-- pagination -->
+            {$goods|raw}
+            <!-- <div class="pagination">
+                <ul>
+                    <li><a href="#">Prev</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">Next</a></li>
+                </ul>
+            </div> -->
+        </div>
+        
+        <!-- footer -->
+        <footer>
+            <hr>
+            <p>© 2017 <a href="javascript:void(0);" target="_blank">ADMIN</a></p>
+        </footer>
+    </div>
+</body>
+</html>

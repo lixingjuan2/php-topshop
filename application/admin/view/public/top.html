@@ -1,0 +1,47 @@
+ {php}
+                            @session_start();
+                            if(empty($_SESSION['username'])){
+                                echo '<font color="red"> 您还未登录, 3秒后跳转登陆页面 </font> ';
+                                header("refresh: 3; url=/admin/login/login");
+                                die();
+                            }
+{/php}
+<!-- 上 -->
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <ul class="nav pull-right">
+                <li id="fat-menu" class="dropdown">
+                    <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-user icon-white"></i> 
+                           
+                        {php}
+                        echo $_SESSION['username'];
+                        {/php}
+                        <i class="icon-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a tabindex="-1" href="{:url('admin/manager/editpass')}">修改密码</a></li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" href="javascript:void(0);" id="tuichu">安全退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <a class="brand" href="/admin/index/index"><span class="first">后台管理系统</span></a>
+            <ul class="nav">
+                <li class="active"><a href="/admin/index/index">首页</a></li>
+                <li><a href="javascript:void(0);">系统管理</a></li>
+                <li><a href="javascript:void(0);">权限管理</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#tuichu').click(function() {
+        if (confirm('您确定要退出吗')) {
+            location.href = "{:url('admin/login/logout')}";
+        }else{
+            console.log(111);;
+        }
+    });
+</script>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>后台管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="__ADMIN__css/main.css" rel="stylesheet" type="text/css" />
+    <link href="__ADMIN__css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="__ADMIN__css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+    <script src="__ADMIN__js/jquery-1.8.1.min.js"></script>
+    <script src="__ADMIN__js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <!-- 上页面 -->
+    {include file="public/top" /}
+    <!-- 左页面 -->
+    {include file="public/left" /}
+    <!-- 右 -->
+    <div class="content">
+        <div class="header">
+            <h1 class="page-title">商品详情</h1>
+        </div>
+
+        <div class="well">
+            <label>商品名称：</label>
+            <div>{$good.goods_name}</div>
+            <label>商品价格：</label>
+            <div>{$good.goods_price}</div>
+            <label>商品数量：</label>
+            <div>{$good.goods_number}</div>
+            <label>商品图片：</label>
+            <a href="{:url('admin/goodsPics/big')}?id={$good.id}">查看800*800</a> &nbsp;<a
+                href="{:url('admin/goodsPics/sma')}?id={$good.id}">查看400*400</a>
+            <div>
+                {foreach $big as $k => $v}
+                <img src="/{$v}" alt=""><hr>
+                {/foreach}
+            </div>
+            <label>商品简介：</label>
+            <div>{$good.goods_introduce|raw}</div>
+        </div>
+        <!-- footer -->
+        <footer>
+            <hr>
+            <p>© 2017 <a href="javascript:void(0);" target="_blank">ADMIN</a></p>
+        </footer>
+    </div>
+</body>
+
+</html>
